@@ -1,0 +1,25 @@
+{{define "title"}}Recent Articles - Silic0n Wiki{{end}}
+
+{{define "content"}}
+<div class="list-page">
+    <h1>Recent Articles</h1>
+    <p class="list-description">The latest articles added to the wiki</p>
+
+    {{if .Articles}}
+    <ul class="article-list">
+        {{range .Articles}}
+        <li class="article-list-item">
+            <a href="/wiki/{{.Slug}}" class="article-link">
+                <span class="article-title">{{.Title}}</span>
+                <span class="article-date">{{.CreatedAt.Format "Jan 2, 2006"}}</span>
+            </a>
+        </li>
+        {{end}}
+    </ul>
+    {{else}}
+    <p class="no-items">No articles found.</p>
+    {{end}}
+
+    <a href="/" class="back-link">Back to search</a>
+</div>
+{{end}}

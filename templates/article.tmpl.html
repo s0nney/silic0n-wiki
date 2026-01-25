@@ -1,0 +1,13 @@
+{{define "title"}}{{.Title}} - Silic0n Wiki{{end}}
+
+{{define "content"}}
+<article class="wiki-article">
+    <h1>{{.Title}}</h1>
+    <div class="article-meta">
+        <span>Last updated: {{.UpdatedAt.Format "January 2, 2006"}}</span>
+    </div>
+    <div class="article-content">
+        {{.Content}}
+    </div>
+</article>
+{{end}}

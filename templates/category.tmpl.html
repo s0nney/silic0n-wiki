@@ -1,0 +1,27 @@
+{{define "title"}}{{.Category.Name}} - Silic0n Wiki{{end}}
+
+{{define "content"}}
+<div class="list-page">
+    <h1>{{.Category.Name}}</h1>
+    {{if .Category.Description}}
+    <p class="list-description">{{.Category.Description}}</p>
+    {{end}}
+
+    {{if .Articles}}
+    <ul class="article-list">
+        {{range .Articles}}
+        <li class="article-list-item">
+            <a href="/wiki/{{.Slug}}" class="article-link">
+                <span class="article-title">{{.Title}}</span>
+                <span class="article-date">{{.CreatedAt.Format "Jan 2, 2006"}}</span>
+            </a>
+        </li>
+        {{end}}
+    </ul>
+    {{else}}
+    <p class="no-items">No articles in this category yet.</p>
+    {{end}}
+
+    <a href="/categories" class="back-link">Back to categories</a>
+</div>
+{{end}}

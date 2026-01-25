@@ -1,0 +1,28 @@
+{{define "title"}}Categories - Silic0n Wiki{{end}}
+
+{{define "content"}}
+<div class="list-page">
+    <h1>Categories</h1>
+    <p class="list-description">Browse articles by category</p>
+
+    {{if .Categories}}
+    <ul class="category-list">
+        {{range .Categories}}
+        <li class="category-list-item">
+            <a href="/categories/{{.Slug}}" class="category-link">
+                <span class="category-name">{{.Name}}</span>
+                <span class="category-count">{{.ArticleCount}} {{if eq .ArticleCount 1}}article{{else}}articles{{end}}</span>
+            </a>
+            {{if .Description}}
+            <p class="category-description">{{.Description}}</p>
+            {{end}}
+        </li>
+        {{end}}
+    </ul>
+    {{else}}
+    <p class="no-items">No categories found.</p>
+    {{end}}
+
+    <a href="/" class="back-link">Back to search</a>
+</div>
+{{end}}

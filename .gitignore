@@ -1,0 +1,29 @@
+# Binaries
+silic0n-wiki
+
+# Config file(s)
+config.yaml
+
+# context for claude
+context.md
+
+# Go build artifacts
+*.test
+*.out
+go.work
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment and config (if containing secrets)
+.env
+.env.local
+

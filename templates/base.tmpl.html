@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0a0b">
+    <meta name="description" content="Silic0n Wiki - Free encyclopedic knowledge for everyone">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <title>{{block "title" .}}Silic0n Wiki{{end}}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">Silic0n Wiki</a>
+        </nav>
+    </header>
+    <main>
+        {{block "content" .}}
+        <h1>Welcome to the Silic0n Wiki</h1>
+        {{end}}
+    </main>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
