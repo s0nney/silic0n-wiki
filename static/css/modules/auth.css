@@ -1,0 +1,111 @@
+/* Auth Pages (Login/Register) */
+.auth-page {
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.auth-page h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+}
+
+.auth-description {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.auth-form {
+    margin-bottom: 1.5rem;
+}
+
+.auth-switch {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    text-align: center;
+}
+
+.auth-switch a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.auth-switch a:hover {
+    color: var(--accent-hover);
+}
+
+/* Article Form Page */
+.article-form-page {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.article-form-page h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+}
+
+/* Article Actions (Edit button on article page) */
+.article-actions {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.edit-btn {
+    display: inline-block;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.edit-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-default);
+    background-color: var(--bg-tertiary);
+}
+
+/* Header nav links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color var(--transition-fast);
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+}
+
+.nav-user {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.logout-form {
+    display: inline;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    padding: 0;
+}

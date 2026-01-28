@@ -5,13 +5,19 @@
     <h1>Recent Articles</h1>
     <p class="list-description">The latest articles added to the wiki</p>
 
-    {{if .Articles}}
+    {{if .Data.Articles}}
     <ul class="article-list">
-        {{range .Articles}}
+        {{range .Data.Articles}}
         <li class="article-list-item">
             <a href="/wiki/{{.Slug}}" class="article-link">
-                <span class="article-title">{{.Title}}</span>
-                <span class="article-date">{{.CreatedAt.Format "Jan 2, 2006"}}</span>
+                <div class="article-info">
+                    <span class="article-title">{{.Title}}</span>
+                    <span class="article-meta-line">
+                        {{if .CategoryName}}<span class="article-category">{{.CategoryName}}</span>{{end}}
+                        <span class="article-author">by {{.LastEditedBy}}</span>
+                    </span>
+                </div>
+                <span class="article-date">{{if .UpdatedAt.After .CreatedAt}}Edited on {{.UpdatedAt.Format "Jan 2, 2006"}}{{else}}Created on {{.CreatedAt.Format "Jan 2, 2006"}}{{end}}</span>
             </a>
         </li>
         {{end}}

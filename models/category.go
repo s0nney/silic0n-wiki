@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"time"
 
 	"silic0n-wiki/database"
@@ -76,6 +77,26 @@ func GetCategoryBySlug(slug string) (*Category, error) {
 		return nil, err
 	}
 
+	return category, nil
+}
+
+func GetOrCreateCategory(name string) (*Category, error) {
+	slug := Slugify(name)
+	if slug == "" {
+		return nil, fmt.Errorf("invalid category name")
+	}
+
+	category := &Category{}
+	err := database.DB.QueryRow(
+		`INSERT INTO categories (slug, name, description)
+		 VALUES ($1, $2, '')
+		 ON CONFLICT (slug) DO UPDATE SET slug = EXCLUDED.slug
+		 RETURNING id, slug, name, description, created_at`,
+		slug, name,
+	).Scan(&category.ID, &category.Slug, &category.Name, &category.Description, &category.CreatedAt)
+	if err != nil {
+		return nil, err
+	}
 	return category, nil
 }
 

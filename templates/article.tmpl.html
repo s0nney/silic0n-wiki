@@ -1,13 +1,32 @@
-{{define "title"}}{{.Title}} - Silic0n Wiki{{end}}
+{{define "title"}}{{.Data.Title}} - Silic0n Wiki{{end}}
 
 {{define "content"}}
 <article class="wiki-article">
-    <h1>{{.Title}}</h1>
+    <h1>{{.Data.Title}}</h1>
     <div class="article-meta">
-        <span>Last updated: {{.UpdatedAt.Format "January 2, 2006"}}</span>
+        {{if .Data.CategoryName}}<a href="/categories/{{.Data.CategorySlug}}" class="meta-category">{{.Data.CategoryName}}</a>{{end}}
+        <span class="meta-separator"></span>
+        <span>Last edited by {{.Data.LastEditedBy}}</span>
+        <span class="meta-separator"></span>
+        <span>Last modified {{.Data.UpdatedAt.UTC.Format "January 2, 2006 15:04 UTC"}}</span>
     </div>
     <div class="article-content">
-        {{.Content}}
+        {{.Data.Content}}
     </div>
+    <div class="article-footer">
+        <span class="article-created">Created on {{.Data.CreatedAt.UTC.Format "January 2, 2006 15:04 UTC"}}</span>
+        {{if .Data.Tags}}
+        <div class="article-tags">
+            {{range .Data.Tags}}
+            <a href="/categories/{{.CategorySlug}}/tags/{{.Slug}}" class="tag">{{.Name}}</a>
+            {{end}}
+        </div>
+        {{end}}
+    </div>
+    {{if .User}}
+    <div class="article-actions">
+        <a href="/wiki/{{.Data.Slug}}/edit" class="edit-btn">Edit Article</a>
+    </div>
+    {{end}}
 </article>
 {{end}}

@@ -9,6 +9,7 @@ import (
 type Config struct {
 	Database DatabaseConfig `yaml:"database"`
 	Server   ServerConfig   `yaml:"server"`
+	Secret   string         `yaml:"secret"`
 }
 
 type DatabaseConfig struct {

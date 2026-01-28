@@ -15,6 +15,19 @@
     <header>
         <nav>
             <a href="/" class="logo">Silic0n Wiki</a>
+            <div class="nav-links">
+                {{if .User}}
+                    <a href="/wiki/new" class="nav-link">New Article</a>
+                    <span class="nav-user">{{.User.Username}}</span>
+                    <form method="POST" action="/logout" class="logout-form">
+                        <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+                        <button type="submit" class="nav-link logout-btn">Logout</button>
+                    </form>
+                {{else}}
+                    <a href="/login" class="nav-link">Login</a>
+                    <a href="/register" class="nav-link">Register</a>
+                {{end}}
+            </div>
         </nav>
     </header>
     <main>

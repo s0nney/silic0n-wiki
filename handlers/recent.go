@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"html/template"
 	"log"
 	"net/http"
 
@@ -21,23 +20,11 @@ func RecentArticles(w http.ResponseWriter, r *http.Request) {
 		"./templates/recent.tmpl.html",
 	}
 
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		log.Printf("Error parsing templates: %v", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-
 	data := struct {
-		Articles []models.Article
+		Articles []models.ArticleWithCategory
 	}{
 		Articles: articles,
 	}
 
-	err = ts.ExecuteTemplate(w, "base.tmpl.html", data)
-	if err != nil {
-		log.Printf("Error executing template: %v", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
+	renderTemplate(w, r, files, data)
 }

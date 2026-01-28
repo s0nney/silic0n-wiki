@@ -11,7 +11,11 @@
     <nav class="quick-links">
         <a href="/articles/recent" class="quick-link">Recent Articles</a>
         <a href="/categories" class="quick-link">Categories</a>
-        <a href="/login" class="quick-link login-btn">Login</a>
+        {{if .User}}
+            <a href="/wiki/new" class="quick-link login-btn">New Article</a>
+        {{else}}
+            <a href="/login" class="quick-link login-btn">Login</a>
+        {{end}}
     </nav>
 </div>
 {{end}}

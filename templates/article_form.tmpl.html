@@ -1,0 +1,101 @@
+{{define "title"}}{{if .Data.IsEdit}}Edit Article{{else}}New Article{{end}} - Silic0n Wiki{{end}}
+
+{{define "content"}}
+<div class="article-form-page">
+    <h1>{{if .Data.IsEdit}}Edit Article{{else}}New Article{{end}}</h1>
+
+    {{if .Data.Errors}}
+    <div class="form-errors">
+        {{range .Data.Errors}}
+        <p class="form-error">{{.}}</p>
+        {{end}}
+    </div>
+    {{end}}
+
+    <form method="POST"
+          action="{{if .Data.IsEdit}}/wiki/{{.Data.Article.Slug}}/edit{{else}}/wiki/new{{end}}"
+          class="article-form">
+        <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title"
+                   value="{{if .Data.Article}}{{.Data.Article.Title}}{{end}}"
+                   required maxlength="255">
+        </div>
+
+        <div class="form-group">
+            <label for="category_id">Category</label>
+            <select id="category_id" name="category_id" required>
+                <option value="">Select a category</option>
+                {{range .Data.Categories}}
+                <option value="{{.ID}}"
+                    {{if $.Data.Article}}{{if eq .ID $.Data.Article.CategoryID}}selected{{end}}{{end}}>
+                    {{.Name}}
+                </option>
+                {{end}}
+                <option value="new" {{if .Data.NewCategoryName}}selected{{end}}>+ New Category...</option>
+            </select>
+            <input type="text" id="new_category_name" name="new_category_name"
+                   value="{{.Data.NewCategoryName}}"
+                   placeholder="Enter new category name"
+                   maxlength="255"
+                   class="new-category-input"
+                   style="{{if .Data.NewCategoryName}}display: block{{else}}display: none{{end}}">
+        </div>
+
+        <div class="form-group">
+            <label for="tags">Tags</label>
+            <input type="text" id="tags" name="tags"
+                   value="{{.Data.TagString}}"
+                   placeholder="Enter tags separated by commas (e.g. Linux, Databases, Web)"
+                   maxlength="500">
+            <span class="form-hint">Tags are created automatically if they don't exist under the selected category.</span>
+        </div>
+
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea id="content" name="content" rows="20"
+                      required>{{if .Data.Article}}{{.Data.Article.Content}}{{end}}</textarea>
+        </div>
+
+        <button type="submit" class="form-submit">
+            {{if .Data.IsEdit}}Save Changes{{else}}Create Article{{end}}
+        </button>
+    </form>
+
+    {{if .Data.IsEdit}}
+    <a href="/wiki/{{.Data.Article.Slug}}" class="back-link">Back to article</a>
+    {{else}}
+    <a href="/" class="back-link">Back to search</a>
+    {{end}}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var categorySelect = document.getElementById('category_id');
+    var newCategoryInput = document.getElementById('new_category_name');
+
+    if (!categorySelect || !newCategoryInput) return;
+
+    function toggleNewCategory() {
+        if (categorySelect.value === 'new') {
+            newCategoryInput.style.display = 'block';
+            newCategoryInput.required = true;
+            newCategoryInput.focus();
+        } else {
+            newCategoryInput.style.display = 'none';
+            newCategoryInput.required = false;
+            newCategoryInput.value = '';
+        }
+    }
+
+    categorySelect.addEventListener('change', toggleNewCategory);
+
+    if (categorySelect.value === 'new') {
+        newCategoryInput.style.display = 'block';
+        newCategoryInput.required = true;
+    }
+});
+</script>
+{{end}}

@@ -1,0 +1,123 @@
+/* List Pages (Recent Articles, Categories) */
+.list-page {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.list-page h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+}
+
+.list-description {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.article-list,
+.category-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.article-list-item,
+.category-list-item {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-secondary);
+    transition: all var(--transition-fast);
+}
+
+.article-list-item:hover,
+.category-list-item:hover {
+    border-color: var(--border-default);
+    background-color: var(--bg-tertiary);
+}
+
+.article-link,
+.category-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.article-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.article-title,
+.category-name {
+    font-weight: 500;
+}
+
+.article-meta-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.article-category {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.article-category::after {
+    content: "\00b7";
+    margin-left: 0.5rem;
+    color: var(--text-muted);
+}
+
+.article-author {
+    color: var(--text-muted);
+}
+
+.article-date,
+.category-count {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.category-description {
+    padding: 0 1.25rem 1rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    margin-top: -0.5rem;
+}
+
+.no-items {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 3rem 1rem;
+    border: 1px dashed var(--border-subtle);
+    border-radius: var(--radius-md);
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color var(--transition-fast);
+}
+
+.back-link:hover {
+    color: var(--accent);
+}
+
+.back-link::before {
+    content: "\2190";
+    margin-right: 0.5rem;
+}

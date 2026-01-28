@@ -1,0 +1,30 @@
+{{define "title"}}Login - Silic0n Wiki{{end}}
+
+{{define "content"}}
+<div class="auth-page">
+    <h1>Login</h1>
+    <p class="auth-description">Sign in to your account</p>
+
+    {{if .Data.Error}}
+    <div class="form-errors">
+        <p class="form-error">{{.Data.Error}}</p>
+    </div>
+    {{end}}
+
+    <form method="POST" action="/login" class="auth-form">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" value="{{.Data.Username}}"
+                   required autocomplete="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password"
+                   required autocomplete="current-password">
+        </div>
+        <button type="submit" class="form-submit">Login</button>
+    </form>
+
+    <p class="auth-switch">Don't have an account? <a href="/register">Register</a></p>
+</div>
+{{end}}

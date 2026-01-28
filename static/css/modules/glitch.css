@@ -1,0 +1,43 @@
+/* Title Glitch Effect */
+.glitch {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 8vw, 5.5rem) !important;
+    letter-spacing: 0.05em !important;
+    color: #fafafa;
+    position: relative;
+    display: inline-block;
+    transform: rotate(-4deg);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+                 0 0 20px rgba(255, 255, 255, 0.2),
+                 0 0 40px rgba(59, 130, 246, 0.1);
+}
+
+/* Neon Flicker Effect - White Only */
+.flicker-white {
+    animation: neon-flicker-white 4s infinite;
+    display: inline-block;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.flicker-white:nth-child(1) { animation-delay: 0s; }
+.flicker-white:nth-child(2) { animation-delay: 0.7s; }
+.flicker-white:nth-child(3) { animation-delay: 1.3s; }
+.flicker-white:nth-child(4) { animation-delay: 2.1s; }
+.flicker-white:nth-child(5) { animation-delay: 2.8s; }
+.flicker-white:nth-child(6) { animation-delay: 3.5s; }
+
+@keyframes neon-flicker-white {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+    41% { opacity: 1; }
+    42% { opacity: 0.4; }
+    43% { opacity: 1; }
+    44% { opacity: 0.2; }
+    45% { opacity: 1; }
+    76% { opacity: 1; }
+    77% { opacity: 0.5; }
+    78% { opacity: 1; }
+}

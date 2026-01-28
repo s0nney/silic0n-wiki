@@ -1,0 +1,63 @@
+/* Responsive Styles */
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+
+    header {
+        padding: 0.875rem 1rem;
+    }
+
+    main {
+        padding: 2rem 1rem;
+    }
+
+    .search-container {
+        min-height: calc(60vh - 60px);
+    }
+
+    .tagline {
+        margin-bottom: 2rem;
+    }
+
+    #search-input {
+        padding: 1rem 1.25rem;
+    }
+
+    .quick-links {
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .quick-link {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .wiki-article h1 {
+        margin-bottom: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-container h1,
+    .glitch {
+        font-size: 2.5rem !important;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    .quick-links {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .quick-link {
+        width: 100%;
+        text-align: center;
+    }
+}

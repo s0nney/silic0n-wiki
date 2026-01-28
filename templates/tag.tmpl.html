@@ -1,0 +1,35 @@
+{{define "title"}}{{.Data.Tag.Name}} - {{.Data.Tag.CategoryName}} - Silic0n Wiki{{end}}
+
+{{define "content"}}
+<div class="list-page">
+    <div class="tag-header">
+        <span class="tag-label">Tag</span>
+        <h1>{{.Data.Tag.Name}}</h1>
+        <p class="list-description">
+            in <a href="/categories/{{.Data.Tag.CategorySlug}}" class="category-breadcrumb">{{.Data.Tag.CategoryName}}</a>
+        </p>
+    </div>
+
+    {{if .Data.Articles}}
+    <ul class="article-list">
+        {{range .Data.Articles}}
+        <li class="article-list-item">
+            <a href="/wiki/{{.Slug}}" class="article-link">
+                <div class="article-info">
+                    <span class="article-title">{{.Title}}</span>
+                    <span class="article-meta-line">
+                        <span class="article-author">by {{.LastEditedBy}}</span>
+                    </span>
+                </div>
+                <span class="article-date">{{.CreatedAt.Format "Jan 2, 2006"}}</span>
+            </a>
+        </li>
+        {{end}}
+    </ul>
+    {{else}}
+    <p class="no-items">No articles with this tag yet.</p>
+    {{end}}
+
+    <a href="/categories/{{.Data.Tag.CategorySlug}}" class="back-link">Back to {{.Data.Tag.CategoryName}}</a>
+</div>
+{{end}}

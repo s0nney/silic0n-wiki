@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"database/sql"
-	"html/template"
 	"log"
 	"net/http"
 
@@ -22,25 +21,13 @@ func Categories(w http.ResponseWriter, r *http.Request) {
 		"./templates/categories.tmpl.html",
 	}
 
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		log.Printf("Error parsing templates: %v", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-
 	data := struct {
 		Categories []models.CategoryWithCount
 	}{
 		Categories: categories,
 	}
 
-	err = ts.ExecuteTemplate(w, "base.tmpl.html", data)
-	if err != nil {
-		log.Printf("Error executing template: %v", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
+	renderTemplate(w, r, files, data)
 }
 
 func CategoryArticles(w http.ResponseWriter, r *http.Request) {
@@ -68,30 +55,25 @@ func CategoryArticles(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	tags, err := models.GetTagsByCategoryWithCount(category.ID)
+	if err != nil {
+		log.Printf("Error fetching tags for category: %v", err)
+	}
+
 	files := []string{
 		"./templates/base.tmpl.html",
 		"./templates/category.tmpl.html",
 	}
 
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		log.Printf("Error parsing templates: %v", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-
 	data := struct {
 		Category *models.Category
 		Articles []models.Article
+		Tags     []models.TagWithCount
 	}{
 		Category: category,
 		Articles: articles,
+		Tags:     tags,
 	}
 
-	err = ts.ExecuteTemplate(w, "base.tmpl.html", data)
-	if err != nil {
-		log.Printf("Error executing template: %v", err)
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
+	renderTemplate(w, r, files, data)
 }
