@@ -11,7 +11,7 @@
         <span>Last modified {{.Data.UpdatedAt.UTC.Format "January 2, 2006 15:04 UTC"}}</span>
     </div>
     <div class="article-content">
-        {{.Data.Content}}
+        {{renderContent .Data.Content}}
     </div>
     <div class="article-footer">
         <span class="article-created">Created on {{.Data.CreatedAt.UTC.Format "January 2, 2006 15:04 UTC"}}</span>

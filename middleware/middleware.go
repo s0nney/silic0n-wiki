@@ -82,6 +82,9 @@ func RequireCSRF(next http.HandlerFunc) http.HandlerFunc {
 		}
 
 		csrfToken := r.FormValue("csrf_token")
+		if csrfToken == "" {
+			csrfToken = r.Header.Get("X-CSRF-Token")
+		}
 		if !auth.ValidateCSRFToken(csrfToken, sessionToken) {
 			http.Error(w, "Forbidden - invalid CSRF token", http.StatusForbidden)
 			return

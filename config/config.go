@@ -10,6 +10,13 @@ type Config struct {
 	Database DatabaseConfig `yaml:"database"`
 	Server   ServerConfig   `yaml:"server"`
 	Secret   string         `yaml:"secret"`
+	Media    MediaConfig    `yaml:"media"`
+}
+
+type MediaConfig struct {
+	UploadDir    string   `yaml:"upload_dir"`
+	MaxFileSize  int64    `yaml:"max_file_size"`
+	AllowedTypes []string `yaml:"allowed_types"`
 }
 
 type DatabaseConfig struct {

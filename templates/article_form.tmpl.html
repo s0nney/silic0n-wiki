@@ -54,9 +54,27 @@
         </div>
 
         <div class="form-group">
+            <label>Media</label>
+            <div id="media-upload-zone" class="media-upload-zone">
+                <div class="media-upload-prompt">
+                    <span class="media-upload-icon">&#x1F4CE;</span>
+                    <p>Drag &amp; drop files here or <button type="button" id="media-upload-btn" class="media-upload-browse">browse</button></p>
+                    <p class="form-hint">Images (JPEG, PNG, GIF, WebP) and videos (MP4, WebM). Max 10MB.</p>
+                </div>
+                <input type="file" id="media-file-input" accept="image/jpeg,image/png,image/gif,image/webp,video/mp4,video/webm" multiple style="display:none">
+            </div>
+            <div id="media-upload-progress" class="media-upload-progress" style="display:none">
+                <div class="media-progress-bar"><div id="media-progress-fill" class="media-progress-fill"></div></div>
+                <span id="media-progress-text" class="media-progress-text">Uploading...</span>
+            </div>
+            <div id="media-upload-list" class="media-upload-list"></div>
+        </div>
+
+        <div class="form-group">
             <label for="content">Content</label>
             <textarea id="content" name="content" rows="20"
                       required>{{if .Data.Article}}{{.Data.Article.Content}}{{end}}</textarea>
+            <span class="form-hint">Use ![alt](filename) to embed media. Resize: ![alt](file =300x200). Center: ![alt](file center). Both: ![alt](file =500x center).</span>
         </div>
 
         <button type="submit" class="form-submit">
@@ -98,4 +116,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+<script src="/static/js/media-upload.js"></script>
 {{end}}

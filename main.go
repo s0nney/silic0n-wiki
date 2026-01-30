@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"silic0n-wiki/config"
 	"silic0n-wiki/database"
@@ -20,6 +21,10 @@ func main() {
 
 	if err := database.RunMigrations("./database/migrations"); err != nil {
 		log.Fatalf("Failed to run migrations: %v", err)
+	}
+
+	if err := os.MkdirAll(config.AppConfig.Media.UploadDir, 0755); err != nil {
+		log.Fatalf("Failed to create upload directory: %v", err)
 	}
 
 	log.Printf("Server starting on port %d", config.AppConfig.Server.Port)

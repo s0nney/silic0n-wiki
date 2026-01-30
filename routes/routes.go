@@ -24,6 +24,7 @@ func StartRouter() {
 	mux.HandleFunc("GET /categories/{slug}", handlers.CategoryArticles)
 	mux.HandleFunc("GET /categories/{category}/tags/{tag}", handlers.TagArticles)
 	mux.HandleFunc("GET /api/search", handlers.Search)
+	mux.HandleFunc("GET /media/{filename}", handlers.ServeMedia)
 
 	// Auth routes
 	mux.HandleFunc("GET /register", handlers.RegisterPage)
@@ -37,6 +38,7 @@ func StartRouter() {
 	mux.HandleFunc("POST /wiki/new", middleware.RequireAuth(middleware.RequireCSRF(handlers.CreateArticleSubmit)))
 	mux.HandleFunc("GET /wiki/{slug}/edit", middleware.RequireAuth(handlers.EditArticlePage))
 	mux.HandleFunc("POST /wiki/{slug}/edit", middleware.RequireAuth(middleware.RequireCSRF(handlers.EditArticleSubmit)))
+	mux.HandleFunc("POST /api/media/upload", middleware.RequireAuth(middleware.RequireCSRF(handlers.MediaUpload)))
 
 	// Wrap entire mux with session loading middleware
 	wrappedMux := middleware.LoadSession(mux)
